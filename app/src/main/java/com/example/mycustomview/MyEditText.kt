@@ -64,32 +64,31 @@ class MyEditText : AppCompatEditText, View.OnTouchListener {
 
 
     override fun onTouch(v: View?, event: MotionEvent): Boolean {
-        if (compoundDrawables[2] != null){
-            val clearButtonStart : Float
-            val clearButtonEnd : Float
+        if (compoundDrawables[2] != null) {
+            val clearButtonStart: Float
+            val clearButtonEnd: Float
             var isClearButtonClicked = false
-            when (layoutDirection){
+            when (layoutDirection) {
                 View.LAYOUT_DIRECTION_RTL -> {
                     clearButtonEnd = (mClearButtonImage.intrinsicWidth + paddingStart).toFloat()
-                    when{
+                    when {
                         event.x < clearButtonEnd -> isClearButtonClicked = true
                     }
                 }
                 else -> {
                     clearButtonStart = (width - paddingEnd - mClearButtonImage.intrinsicWidth).toFloat()
-                    when{
+                    when {
                         event.x > clearButtonStart -> isClearButtonClicked = true
                     }
                 }
             }
-            when{
+            when {
                 isClearButtonClicked -> when {
                     event.action == MotionEvent.ACTION_DOWN -> {
                         mClearButtonImage = ResourcesCompat.getDrawable(resources, R.drawable.ic_baseline_close_24, null) as Drawable
                         showClearButton()
                         return true
                     }
-
                     event.action == MotionEvent.ACTION_UP -> {
                         mClearButtonImage = ResourcesCompat.getDrawable(resources, R.drawable.ic_baseline_close_24, null) as Drawable
                         when {

@@ -19,6 +19,8 @@ class MainActivity : AppCompatActivity(){
         myButton = findViewById(R.id.my_button)
         myEditText = findViewById(R.id.my_edit_text)
 
+        setMyButtonEnable()
+
         myEditText.addTextChangedListener(object : TextWatcher{
 
             override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
@@ -41,7 +43,7 @@ class MainActivity : AppCompatActivity(){
     }
 
     private fun setMyButtonEnable(){
-        val result = myEditText
-        result.isEnabled = result != null && result.toString().isNotEmpty()
+        val result = myEditText.text
+        myButton.isEnabled = result != null && result.toString().isNotEmpty()
     }
 }
